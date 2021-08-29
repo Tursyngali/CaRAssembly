@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+	<meta charset="utf-8">
+	<title>
+		
+	</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+	
+</head>
+<body>
+	
+
+	<div id="app">
+		<nav class="nav">
+			<h2 id="nav_header">Cобери свою машину</h2>
+			<div class="nav_cart">
+				<button @click="showCart=!showCart">
+					<i class="fas fa-shopping-cart"></i>
+				</button>
+				<span class="total_quantity">
+					{{totalQuantity}}
+				</span>
+				<div v-if="showCart" class="cart_dropdown">
+					<ul class="cart_dropdown_list">
+						<li  v-for="product in cart" :key="product.id">
+							{{product.name}}({{product.quantity}}*{{product.cost}})
+						</li>
+					</ul>
+					<p>Cost: {{totalCost}}</p>
+				</div>
+			</div>
+		</nav>
+		<section class="products">
+			<div v-for="product in products" :key="product.id" class="product">
+				<h3 class="product_header">
+					{{product.name}}
+				</h3>
+				<img 
+				:src="product.image" 
+				:alt="product.name"
+				class="product_img">
+				<p class="description" id="cost">
+					{{product.cost}}$
+				</p>
+				<div class="cart">
+					<button @click="updateCart(product,'substract')" class="cart_button">-</button>
+					<span class="cart_quantity" >
+						{{product.quantity}}
+					</span>
+					<button @click="updateCart(product,'add')	" class="cart_button">+</button>
+				</div>
+
+			</div>
+
+		</section>
+	</div>
+	<script src="index.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
